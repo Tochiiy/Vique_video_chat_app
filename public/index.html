@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; connect-src 'self' ws: wss: stun:stun1.l.google.com:19302; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <title>Vique Video Call</title>
+</head>
+
+<body>
+    <!-- ── Welcome Modal ── -->
+    <div id="welcome_modal" class="modal_overlay">
+        <div class="modal_content">
+            <h2 class="h1_font">Welcome, <span id="display_username"></span>!</h2>
+            <p>Ready to start your video call? Enter your username to see who's online.</p>
+            <button id="close_modal" class="modal_btn">Get Started</button>
+        </div>
+    </div>
+
+    <!-- ── Main App Stage (Floating/Centered Wrapper) ── -->
+    <div class="app_wrapper">
+
+        <h1>Vique Video Call</h1>
+
+        <main class="main_con">
+
+            <!-- Sidebar: Active User List -->
+            <aside class="caller_list_w">
+                <h1 class="caller_list_h1 h1_font">Contacts</h1>
+                <ul id="A_Users" class="caller_list">
+                    <!-- Populated dynamically via main.js -->
+                </ul>
+            </aside>
+
+            <!-- Video Calling Interface -->
+            <section class="video_call_container">
+
+                <!-- User Input Area -->
+                <div class="username_input">
+                    <input id="username" type="text" placeholder="Set your username">
+                    <button id="create_user">Join Network</button>
+                </div>
+
+                <!-- Video Stream Grid (Responsive side-by-side) -->
+                <div class="video_streams_grid">
+                    <!-- Local Camera Stream -->
+                    <div class="video_streams">
+                        <span class="user_label local_label">You</span>
+                        <video id="localVideo" autoplay muted playsinline></video>
+                    </div>
+
+                    <!-- Remote Camera Stream -->
+                    <div>
+                        <span id="remote_user_name" class="user_label remote_label">Remote User</span>
+                        <div class="remote video">
+                            <video id="remoteVideo" autoplay playsinline></video>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Control Buttons -->
+                <button id="end_call_btn" class="call d-none">
+                    <svg class="call_svg" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.62 10.79C8.06 13.62 10.38 15.94 13.21 17.38L15.41 15.18C15.68 14.91 16.08 14.82 16.43 14.94C17.55 15.31 18.76 15.51 20 15.51C20.55 15.51 21 15.96 21 16.51V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.24 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.58L6.62 10.79Z" fill="white"/>
+                    </svg>
+                    <span>End Call</span>
+                </button>
+            </section>
+
+            <!-- Live Chat Interface -->
+            <section id="chat_section" class="chat_container">
+                <div class="chat_header">
+                    <h1 class="h1_font">Live Chat</h1>
+                </div>
+                <div id="chat_messages" class="chat_messages">
+                    <!-- Messages appended here by main.js -->
+                </div>
+                <div class="chat_input_area">
+                    <input id="chat_input" type="text" placeholder="Type a message..." autocomplete="on">
+                    <button id="chat_send">
+                        <span style="font-size: 1.2rem; color: #fff;">➤</span>
+                    </button>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ── Footer ──────────────────────────────── -->
+    <footer
+        style="text-align:center; padding: 18px 0; background: #0d1018; color: #566070; font-size: 0.82rem; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+        &copy; 2026 Dev_World_with_Tochukwu. All rights reserved.
+    </footer>
+
+    <!-- Signal scripts for real-time communication -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+
+</html>
