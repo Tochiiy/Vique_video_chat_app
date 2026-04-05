@@ -279,7 +279,30 @@ video {
   .main_con {
     display: flex; flex-direction: column; min-height: auto;
   }
-  .caller_list_w { display: none; } /* Hide sidebar on mobile for simplicity */
+  
+  /* Mobile Contact horizontal scroll */
+  .caller_list_w { 
+    display: block; 
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 16px;
+    height: auto;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .caller_list {
+      display: flex;
+      gap: 12px;
+      padding-bottom: 8px;
+  }
+  .caller_list li {
+      flex: 0 0 auto;
+      margin-bottom: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+  }
+
   .video_call_container { padding: 20px; }
   .video_streams_grid { grid-template-columns: 1fr; gap: 16px; }
   video { height: 200px; }
